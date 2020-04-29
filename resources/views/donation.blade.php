@@ -98,6 +98,43 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
     </script>
+     <script type="text/javascript"
+     src="https://app.sandbox.midtrans.com/snap/snap.js"
+     data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+
+    <script>
+        $("#donation_form").submit(function (event) {
+            event.preventDefault();
+
+            $.post("/donation", {
+                _method: 'POST',
+                _token: '{{ csrf_token() }}',
+                donor_name: $('input#donor_name').val(),
+                donor_email: $('input#donor_email').val(),
+                donation_type: $('select#donation_type').val(),
+                amount: $('input#amount').val(),
+                note: $('textarea#note').val(),
+            },
+            function (data, status) {
+                snap.pay(data.snap_token, {
+
+                    onSuccess: function (result) {
+                        location.reload();
+                    },
+
+                    onPending: function (result) {
+                        location.reload();
+                    },
+
+                    onError: function (result) {
+                        location.reload();
+                    }
+                    
+                });
+                return false;
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -10,6 +10,14 @@ use Veritrans_Notification;
 
 class DonationController extends Controller
 {
+    public function __construct()
+    {
+        Veritrans_Config::$serverKey = config('services.midtrans.serverKey');
+        Veritrans_Config::$isProduction = config('services.midtrans.isProduction');
+        Veritrans_Config::$isSanitized = config('services.midtrans.isSanitized');
+        Veritrans_Config::$is3ds = config('services.midtrans.is3ds');
+    }
+    
     public function index(){
         return view('donation');
     }

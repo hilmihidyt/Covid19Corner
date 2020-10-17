@@ -1,47 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.front')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lara-midtrans</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-    <style>
-        body {
-            min-height: 75rem;
-        }
-    </style>
-</head>
-
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Lara-midtrans</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/donation">Donation <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4">Lara-midtrans</h1>
-            <p class="lead">Project integrasi midtrans di laravel</p>
-        </div>
-    </div>
-
+@section('content')
+<div class="hero-v1">
     <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mr-auto text-center text-lg-left">
+          <h1 class="heading mb-3">Donasi</h1>
+          <p class="mb-5">Hasil donasi akan diberikan untuk saudara kita yang terdampak covid19, tenaga medis dan untuk pembelian alat kesehatan seperti masker, handsanitizer, APD untuk kemudian dibagikan.</p>
+        </div>
+        <div class="col-lg-6">
+          <figure class="illustration">
+            <img src="{{ asset('assets/images/illustration.png') }}" alt="Image" class="img-fluid">
+          </figure>
+        </div>   
+      </div>
+    </div>
+  </div>
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
         <form action="#" id="donation_form">
-            <legend>Donation</legend>
+            <legend>Donasi</legend>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -55,86 +34,64 @@
                         <input type="email" name="donor_email" class="form-control" id="donor_email">
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="">Jenis Donasi</label>
-                        <select name="donation_type" class="form-control" id="donation_type">
-                          <option value="medis_kesehatan">Medis & Kesehatan</option>
-                          <option value="kemanusiaan">Kemanusiaan</option>
-                          <option value="bencana_alam">Bencana Alam</option>
-                          <option value="rumah_ibadah">Rumah Ibadah</option>
-                          <option value="beasiswa_pendidikan">Beasiswa & Pendidikan</option>
-                          <option value="sarana_infrastruktur">Sarana & Infrastruktur</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
+                
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">Jumlah</label>
-                        <input type="number" name="amount" class="form-control" id="amount">
+                    <label for="amount">Jumlah</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">Rp.</div>
+                        </div>
+                        <input type="number" name="amount" class="form-control" id="amount" placeholder="Jumlah Donasi">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Catatan (Opsional)</label>
-                        <textarea name="note" cols="30" rows="3" class="form-control" id="note"></textarea>
+                        <input name="note" cols="30" rows="3" class="form-control" id="note">
                     </div>
                 </div>
             </div>
 
             <button class="btn btn-primary" type="submit">Kirim</button>
         </form>
+      </div>
     </div>
+  </div>
+@endsection
 
+@push('scripts')
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 
+<script>
+   $("#donation_form").submit(function (event) {
+       event.preventDefault();
+       $.post("/api/donation", {
+           _method: 'POST',
+           _token: '{{ csrf_token() }}',
+           donor_name: $('input#donor_name').val(),
+           donor_email: $('input#donor_email').val(),
+           donation_type: $('select#donation_type').val(),
+           amount: $('input#amount').val(),
+           note: $('textarea#note').val(),
+       },
+       function (data, status) {
+           snap.pay(data.snap_token, {
+               onSuccess: function (result) {
+                   location.reload();
+               },
+               onPending: function (result) {
+                   location.reload();
+               },
+               onError: function (result) {
+                   location.reload();
+               }
+               
+           });
+           return false;
+       });
+   });
+</script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
-    </script>
-     <script type="text/javascript"
-     src="https://app.sandbox.midtrans.com/snap/snap.js"
-     data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
-
-    <script>
-        $("#donation_form").submit(function (event) {
-            event.preventDefault();
-
-            $.post("/api/donation", {
-                _method: 'POST',
-                _token: '{{ csrf_token() }}',
-                donor_name: $('input#donor_name').val(),
-                donor_email: $('input#donor_email').val(),
-                donation_type: $('select#donation_type').val(),
-                amount: $('input#amount').val(),
-                note: $('textarea#note').val(),
-            },
-            function (data, status) {
-                snap.pay(data.snap_token, {
-
-                    onSuccess: function (result) {
-                        location.reload();
-                    },
-
-                    onPending: function (result) {
-                        location.reload();
-                    },
-
-                    onError: function (result) {
-                        location.reload();
-                    }
-                    
-                });
-                return false;
-            });
-        });
-    </script>
-</body>
-
-</html>
+@endpush

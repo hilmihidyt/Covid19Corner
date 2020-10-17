@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon;
-use App\Donation;
+use App\{Donation, General};
 use Veritrans_Config;
 use Veritrans_Snap;
 use Veritrans_Notification;
@@ -20,17 +20,18 @@ class DonationController extends Controller
     }
 
     public function index(){
-        return view('donation');
+        $general = General::find(1);
+        return view('donation', compact('general'));
     }
 
     public function store(Request $request)
     {
         \DB::transaction(function() use($request) {
             $donation = Donation::create([
-                'donation_code' => 'UDON-'  . uniqid(),
+                'donation_code' => 'CC-'  . uniqid(),
                 'donor_name' => $request->donor_name,
                 'donor_email' => $request->donor_email,
-                'donation_type' => $request->donation_type,
+                'donation_type' => 'Donasi Covid19',
                 'amount' => floatval($request->amount),
                 'note' => $request->note,
             ]);
@@ -44,8 +45,6 @@ class DonationController extends Controller
                 'customer_details' => [
                     'first_name'    => $donation->donor_name,
                     'email'         => $donation->donor_email,
-                    // 'phone'         => '08888888888',
-                    // 'address'       => '',
                 ],
                 'item_details' => [
                     [

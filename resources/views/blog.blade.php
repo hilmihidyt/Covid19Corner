@@ -106,8 +106,8 @@
                 <span>{{ $blog->user->name }}</span>
               </a>
               <a href="{{ route('blogshow',$blog->slug) }}">
-                <span class="icon-comment"></span>
-                <span>3 Comments</span>
+                <span class="icon-eye"></span>
+                <span>{{ $blog->views }} Views</span>
               </a>
             </div>
             <h3><a href="{{ route('blogshow',$blog->slug) }}">{{ $blog->title }}</a></h3>

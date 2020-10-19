@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Covid19 Corner - Dashboard</title>
+  <title>Covid19 - Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Covid-19 <sup>1.0</sup></div>
       </a>
 
       <!-- Divider -->
@@ -53,23 +53,13 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('dashboard')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-   
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -86,12 +76,6 @@
         </div>
       </li>
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.donasi') }}">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Donasi</span></a>
-      </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.symptom') }}">
@@ -103,6 +87,12 @@
         <a class="nav-link" href="{{ route('admin.protect') }}">
           <i class="fas fa-fw fa-table"></i>
           <span>Pencegahan</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.message') }}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Pesan Masuk</span></a>
       </li>
 
       <li class="nav-item">
@@ -208,7 +198,17 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          
+          <a class="btn btn-primary" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                      {{ __('Logout') }}
+                                                    </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+
         </div>
       </div>
     </div>

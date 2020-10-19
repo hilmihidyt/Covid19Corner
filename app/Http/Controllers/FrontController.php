@@ -61,14 +61,6 @@ class FrontController extends Controller
         return view('blog',compact("posts","query","general"));
     }
 
-    public function gejala(){
-        return view ('gejala');
-    }
-
-    public function about(){
-        return view('about');
-    }
-
     public function contact(){
         $general = General::find(1);
         return view('contact', compact('general'));

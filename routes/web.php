@@ -14,15 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','FrontController@home')->name('home');
-Route::get('gejala','FrontController@gejala')->name('gejala');
-Route::get('about','FrontController@about')->name('about');
 Route::get('blog','FrontController@blog')->name('blog');
 Route::get('blog/search','FrontController@search')->name('search');
 Route::get('blog/{slug}','FrontController@blogshow')->name('blogshow');
-
 Route::get('categories/{category:slug}','FrontController@category')->name('category');
 Route::get('tags/{tag:slug}','FrontController@tag')->name('tag');
-Route::get('donasi','DonationController@index')->name('donasi');
 Route::get('hubungi-kami','FrontController@contact')->name('contact');
 Route::post('hubungi-kami','FrontController@message')->name('message');
 
@@ -33,16 +29,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('dashboard','DashboardController')->name('dashboard');
 
-    Route::get('donasi','DonasiController@index')->name('admin.donasi');
-
     // Manage Blog
     Route::get('post','PostController@index')->name('admin.post');
 
     Route::get('post/create','PostController@create')->name('admin.post.create');
 
     Route::post('post/create','PostController@store')->name('admin.post.store');
-
-    Route::post('/images', 'PostController@uploadImage')->name('admin.post.image');
 
     Route::get('post/edit/{id}','PostController@edit')->name('admin.post.edit');
 
@@ -103,6 +95,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('protect/edit/{id}','ProtectController@update')->name('admin.protect.update');
 
     Route::delete('protect/destroy/{id}','ProtectController@destroy')->name('admin.protect.destroy');
+
+    // Manage Messages
+    Route::get('message','MessageController@index')->name('admin.message');
 
      // General Settings
 

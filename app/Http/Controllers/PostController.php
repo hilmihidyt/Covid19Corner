@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Post;
-
-use App\Category;
-
-use App\Tag;
+use App\{Category, Post, Tag};
 
 use Auth;
 
@@ -66,12 +62,9 @@ class PostController extends Controller
         
         $data['author_id'] = Auth::user()->id;
 
-        $cover = $request->file('cover');
-
-        if($cover){
-        $cover_path = $cover->store('images/blog', 'public');
-
-        $data['cover'] = $cover_path;
+        if($request->file('cover')){
+            $file = $request->file('cover')->store('blog', 'public');
+            $data['cover'] = $file;
         }
 
         $post = Post::create($data);
@@ -80,11 +73,11 @@ class PostController extends Controller
 
         if ($post) {
 
-                return redirect()->route('admin.post')->with('success', 'Post added successfully');
+                return redirect()->route('admin.post')->with('success', 'Data Berhasil Ditambahkan');
         
                } else {
                    
-                return redirect()->route('admin.post.create')->with('error', 'Post failed to add');
+                return redirect()->route('admin.post.create')->with('error', 'Data Gagal Ditambahkan');
         
                }
     }
@@ -140,13 +133,13 @@ class PostController extends Controller
 
         $data['category_id'] = request('category');
 
-        $cover = $request->file('cover');
-
-        if($cover){
-        $cover_path = $cover->store('images/blog', 'public');
-
-        $data['cover'] = $cover_path;
-        }
+        if($request->file('cover')){
+            if($post->cover && file_exists(storage_path('app/public/'.$post->cover))){
+            \Storage::delete('public/'.$post->cover);
+            }
+            $file = $request->file('cover')->store('blog', 'public');
+            $data['cover'] = $file;
+            }
 
         $update = $post->update($data);
 
@@ -154,11 +147,11 @@ class PostController extends Controller
 
         if ($update) {
 
-                return redirect()->route('admin.post')->with('success', 'Post added successfully');
+                return redirect()->route('admin.post')->with('success', 'Data Berhasil Diperbarui');
         
                } else {
                    
-                return redirect()->route('admin.post.create')->with('error', 'Post failed to add');
+                return redirect()->route('admin.post.edit')->with('error', 'Data Gagal Diperbarui');
         
                }
     }
@@ -212,9 +205,13 @@ class PostController extends Controller
         
         $post = Post::withTrashed()->findOrFail($id);
 
+        if($post->cover && file_exists(storage_path('app/public/' . $post->cover))){
+            \Storage::delete('public/'.$post->cover);
+            }
+
         if (!$post->trashed()) {
         
-            return redirect()->route('admin.post.trash')->with('error','Post is not in trash');
+            return redirect()->route('admin.post.trash')->with('error','Data Tidak Ada Di Trash');
         
         }else {
         
@@ -222,7 +219,7 @@ class PostController extends Controller
 
         $post->forceDelete();
 
-        return redirect()->route('admin.post.trash')->with('success', 'Post deleted successfully');
+        return redirect()->route('admin.post.trash')->with('success', 'Data Berhasil Dihapus');
         }
     }
 }

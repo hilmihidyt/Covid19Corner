@@ -68,10 +68,9 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="/" class="nav-link">Home</a></li>
-                <li><a href="{{ route('donasi') }}" class="nav-link">Donasi</a></li>
-                <li><a href="{{ route('blog') }}" class="nav-link">Blog</a></li>
-                <li><a href="{{ route('contact') }}" class="nav-link">Hubungi Kami</a></li>
+                <li {{ request()->is('/') ? 'class=active' : '' }}><a href="/" class="nav-link">Home</a></li>
+                <li {{ request()->is('blog') ? 'class=active' : '' }} ><a href="{{ route('blog') }}" class="nav-link">Blog</a></li>
+                <li {{ request()->is('hubungi-kami') ? 'class=active' : '' }} ><a href="{{ route('contact') }}" class="nav-link">Hubungi Kami</a></li>
               </ul>
             </nav>
           </div>

@@ -1,5 +1,3 @@
-<p align="center"><img src="https://vanjava.net/storage/images/general/7FFTTBxqlPwvdCinHb81uzM517ixJ4X5tcGZ3IKH.png" width="200" hight="200></p>
-
 Source code Covid19Corner
 
 Source code web covid-19 - Seperti yang kita ketahui bahwa kasus covid-19 di negara kita Indonesia masih sangatlah tinggi, hal ini disebabkan karena beberapa masyarakat masih kekurang informasi atau juga belum teredukasi mengenai apa itu covid-19, bagaimana cara pencegahannya, apa saja gejalanya, dan lain-lain. Hal ini lah yang menjadi latar belakang kami membuat project web informasi covid-19 sederhana yang memberikan informasi mengenai covid-19 melalui postingan artikel atau blog dan memberikan update informasi kasus covid-19 di Indonesia secara realtime.

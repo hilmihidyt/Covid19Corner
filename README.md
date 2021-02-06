@@ -1,79 +1,45 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><img src="https://vanjava.net/storage/images/general/7FFTTBxqlPwvdCinHb81uzM517ixJ4X5tcGZ3IKH.png" width="200" hight="200></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Source code Covid19Corner
 
-## About Laravel
+Source code web covid-19 - Seperti yang kita ketahui bahwa kasus covid-19 di negara kita Indonesia masih sangatlah tinggi, hal ini disebabkan karena beberapa masyarakat masih kekurang informasi atau juga belum teredukasi mengenai apa itu covid-19, bagaimana cara pencegahannya, apa saja gejalanya, dan lain-lain. Hal ini lah yang menjadi latar belakang kami membuat project web informasi covid-19 sederhana yang memberikan informasi mengenai covid-19 melalui postingan artikel atau blog dan memberikan update informasi kasus covid-19 di Indonesia secara realtime.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Source code project web informasi covid-19 yang sederhana ini dibuat dengan menggunakan framework Laravel versi 7, template front end menggunakan template dari Colorlib dan template back end menggunakan SB Admin 2.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Di source code project web covid-19 ini ada beberapa fitur seperti statistik covid-19 Indonesia yang datanya diperbarui secara realtime menggunakan API dari kawalcorona.com. Ada juga fitur post atau blog yang berfungsi untuk membagikan artikel atau informasi seputar covid-19 atau seputar hidup sehat. Selain itu juga ada beberapa section seperti gejala dan bagaimana cara melindungi diri dari covid-19. Semua data yang ditampilkan di front end mulai dari data artikel, data gejala, data pencegahan, dan data umum (nama web, phone, email, alamat, keyword, meta description, dll) dapat diolah dari back end.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+untuk menambahkan widget live chat seperti tawk.to bisa ditambahkan dengan menambahkan script di form settings. Script tawk.to bisa didapatkan dengan langkah-langkah di artikel ini: https://vanjava.net/blog/cara-memasang-chat-widget-tawkto-di-website
 
-## Learning Laravel
+Cara installasi:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Download file project dengan klik tombol download di bawah ini.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Extract file project
 
-## Laravel Sponsors
+3. buka terminal & masuk ke direktori project yang sudah diextract.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4. Jalankan artisan "php artisan storage:link"
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+jika terdapat error, masuk ke direktori public kemudian jalankan command "rm storage". Jika sudah, kembali ke direktori project lagi dan jalankan "php artisan storage:link"
 
-## Contributing
+5. Buat database baru di phpmyadmin atau adminer atau yang lainnya.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. import file database dari folder project dengan nama file covid.sql.
 
-## Code of Conduct
+7. sesuaikan nama database di file .env dengan nama database yang baru ditambakan pada no. 5
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+8. Sekarang coba jalankan php artisan serve.
 
-## Security Vulnerabilities
+9. Untuk masuk ke halaman admin, akses ke 127.0.0.1:8000/login
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+email hilmi@mail.test dan password 12345678
 
-## License
+10. SELESAI.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Apakah source code ini boleh diupload di hosting (live) ? Ya boleh dong, tapi kamu tidak diperkenankan menghapus footer link (Copyright ©2020 All rights reserved | This template is made with  love by Colorlib).
+
+Jika ingin menggunakan source code web covid-19 ini untuk live, Kami menyarankan untuk menggunakan layanan hosting dari Niagahoster, karena menurut pengalaman kami layanan dari Niagahoster sangat baik sekali mulai dari produk, fitur dan layanannya sangat memuaskan.
+
+Jika ingin membeli layanan dari Niagahoster.co.id gunakan kode voucher "vanjava" untuk mendapatkan potongan harga sebesar 5%.
+
+Detail: https://vanjava.net/repositori/covid19corner-source-code-web-informasi-covid-19

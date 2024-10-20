@@ -6,7 +6,7 @@ Source code project web informasi covid-19 yang sederhana ini dibuat dengan meng
 
 Di source code project web covid-19 ini ada beberapa fitur seperti statistik covid-19 Indonesia yang datanya diperbarui secara realtime menggunakan API dari kawalcorona.com. Ada juga fitur post atau blog yang berfungsi untuk membagikan artikel atau informasi seputar covid-19 atau seputar hidup sehat. Selain itu juga ada beberapa section seperti gejala dan bagaimana cara melindungi diri dari covid-19. Semua data yang ditampilkan di front end mulai dari data artikel, data gejala, data pencegahan, dan data umum (nama web, phone, email, alamat, keyword, meta description, dll) dapat diolah dari back end.
 
-untuk menambahkan widget live chat seperti tawk.to bisa ditambahkan dengan menambahkan script di form settings. Script tawk.to bisa didapatkan dengan langkah-langkah di artikel ini: https://vanjava.net/blog/cara-memasang-chat-widget-tawkto-di-website
+untuk menambahkan widget live chat seperti tawk.to bisa ditambahkan dengan menambahkan script di form settings.
 
 Cara installasi:
 
@@ -35,9 +35,3 @@ email hilmi@mail.test dan password 12345678
 10. SELESAI.
 
 Apakah source code ini boleh diupload di hosting (live) ? Ya boleh dong, tapi kamu tidak diperkenankan menghapus footer link (Copyright ©2020 All rights reserved | This template is made with  love by Colorlib).
-
-Jika ingin menggunakan source code web covid-19 ini untuk live, Kami menyarankan untuk menggunakan layanan hosting dari Niagahoster, karena menurut pengalaman kami layanan dari Niagahoster sangat baik sekali mulai dari produk, fitur dan layanannya sangat memuaskan.
-
-Jika ingin membeli layanan dari Niagahoster.co.id gunakan kode voucher "vanjava" untuk mendapatkan potongan harga sebesar 5%.
-
-Detail: https://vanjava.net/repositori/covid19corner-source-code-web-informasi-covid-19
